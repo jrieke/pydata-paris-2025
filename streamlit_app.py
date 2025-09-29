@@ -1,10 +1,11 @@
-import streamlit as st
-from data import df
-import plotly.express as px
-import pandas as pd
-import numpy as np
 import time
+
+import pandas as pd
+import plotly.express as px
 import pydeck as pdk
+import streamlit as st
+
+from data import df
 
 st.logo("https://streamlit.io/images/brand/streamlit-mark-color.svg", link="https://streamlit.io")
 
@@ -318,12 +319,28 @@ if st.toggle("Enable fragment example", False):
 
 """
 ## Authentication :yellow-badge[🔐 Security]
+
+Add login with Google, GitHub, or any other OAuth2 provider in a few lines of code!
+
+In `.streamlit/secrets.toml`, add the app credentials:
+    
+```toml
+[auth]
+redirect_uri = "http://<app_url>/oauth2callback"
+cookie_secret = "xxx"
+client_id = "xxx"
+client_secret = "xxx"
+server_metadata_url = "https://accounts.google.com/.well-known/openid-configuration"
+```
+
+Then, use `st.login`, `st.logout`, and `st.user` in your app:
 """
 
-if not st.user.is_logged_in:
-    if st.button("Log in"):
-        st.login()
-else:
-    if st.button("Log out"):
-        st.logout()
-    st.write(f"Hello, {st.user.name}!")
+with st.echo():
+    if not st.user.is_logged_in:
+        if st.button("Log in"):
+            st.login()
+    else:
+        if st.button("Log out"):
+            st.logout()
+        st.write(f"Hello, {st.user.name}!")
