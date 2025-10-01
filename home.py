@@ -339,7 +339,7 @@ if st.toggle("Show fragment example (slow)", False):
         return result
 
     size = st.slider(
-        "Matrix size", min_value=100, max_value=10000, value=1000, step=100
+        "Matrix size", min_value=100, max_value=1000, value=100, step=100
     )
     result = matrix_multiplication(size)
     st.dataframe(result[:100, :100])
