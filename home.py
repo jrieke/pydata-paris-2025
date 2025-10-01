@@ -331,7 +331,8 @@ Fragments allow you to rerun only a part of your app when interacting with a wid
 
 if st.toggle("Show fragment example (slow)", False):
 
-    def matrix_multiplication(size):
+    @st.cache_data
+    def matrix_multiplication(size: int):
         with st.spinner("Multiplying matrices..."):
             a = np.random.rand(size, size)
             b = np.random.rand(size, size)
